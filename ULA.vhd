@@ -15,7 +15,7 @@ END ULA;
 	BEGIN
 	PROCESS (ALUop, X, Y, Result, Cin)
 	BEGIN
-		cASE ALUop IS
+		CASE ALUop IS
 			WHEN "00" => -- AND
 				S <= X AND Y;
 				
