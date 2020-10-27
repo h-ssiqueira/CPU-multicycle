@@ -2,7 +2,7 @@ LIBRARY ieee;
 USE ieee.std_logic_1164.all;
 
 ENTITY REGS IS
-	PORT( 	RegWrite, load, reset			:IN	STD_LOGIC;							-- sinal do controlador e sinais de load e reset
+	PORT( 	RegWrite						:IN	STD_LOGIC;							-- sinal do controlador e sinais de load e reset
 			regA, regB, writeR				:IN	STD_LOGIC_VECTOR(2 DOWNTO 0); 		-- Controle dos registradores a serem usados
 			data							:IN	STD_LOGIC_VECTOR(7 DOWNTO 0); 		-- Informações a serem escritas em um registrador
 			R0, R1, R2, R3, R4, R5, R6, R7	:BUFFER STD_LOGIC_VECTOR(7 DOWNTO 0); 	-- Registradores
@@ -11,42 +11,9 @@ END REGS;
 	
 	ARCHITECTURE options OF REGS IS
 	BEGIN
-	PROCESS (RegWrite, regA, regB, writeR, data, load, reset, R0, R1, R2, R3, R4, R5, R6, R7)
-	BEGIN
-	
-		CASE RESET IS -- RESET zera todos os registradores
-		
-			WHEN '1' =>
-				R0 <= "00000000";
-				R1 <= "00000000";
-				R2 <= "00000000";
-				R3 <= "00000000";
-				R4 <= "00000000";
-				R5 <= "00000000";
-				R6 <= "00000000";
-				R7 <= "00000000";
-				
-			WHEN OTHERS => NULL;
-			
-		END CASE;
-		
-		CASE LOAD IS	-- Load carrega os valores de 0 a 7 em cada registrador
-		
-			WHEN '1' =>
-				R0 <= "00000000";
-				R1 <= "00000001";
-				R2 <= "00000010";
-				R3 <= "00000011";
-				R4 <= "00000100";
-				R5 <= "00000101";
-				R6 <= "00000110";
-				R7 <= "00000111";
-				
-			WHEN OTHERS => NULL;
-			
-		END CASE;
-		
-		cASE RegWrite IS
+	PROCESS (RegWrite, regA, regB, writeR, data, R0, R1, R2, R3, R4, R5, R6, R7)
+	BEGIN	
+		CASE RegWrite IS
 		
 			WHEN '0' => -- Sem escrita
 				CASE regA IS
