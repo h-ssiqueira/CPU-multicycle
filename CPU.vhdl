@@ -13,7 +13,8 @@ END CPU;
     TYPE STATE_TYPE IS (Fetch, Decode, OpAdd, OpSub, OpAnd, OpOr, WriteBack);
     SIGNAL state: STATE_TYPE;
     SIGNAL PCWrite, IRWrite, RegDst, ALUScrA, RegWrite : STD_LOGIC;
-    SIGNAL MovtoReg, ALUOp, ALUScrB : STD_LOGIC_VECTOR(1 DOWNTO 0); 
+    SIGNAL MovtoReg, ALUOp, ALUScrB : STD_LOGIC_VECTOR(1 DOWNTO 0);
+	 SIGNAL OPCODE : STD_LOGIC_VECTOR(3 DOWNTO 0);
 	BEGIN
 	PROCESS (clock, reset)
     BEGIN
@@ -114,15 +115,40 @@ END CPU;
 					'0' 	WHEN OpAnd,
 					'0'		WHEN OpOr,
 					'0'		WHEN WriteBack;
-    WITH state SELECT
-	RegDst         <='0' 	WHEN Fetch,
-					'0'		WHEN Decode,
-					'0'		WHEN OpAdd,
-					'0'		WHEN OpSub,
-					'0' 	WHEN OpAnd,
-					'0'		WHEN OpOr,
-                    '0'		WHEN WriteBack AND (OPCODE(0) = '1');
-                    '1'		WHEN WriteBack AND (OPCODE(0) = '0');
+    --WITH state SELECT
+	--RegDst         <='0' 	WHEN Fetch,
+		--			'0'		WHEN Decode,
+		--			'0'		WHEN OpAdd,
+		--			'0'		WHEN OpSub,
+		--			'0' 	WHEN OpAnd,
+		--			'0'		WHEN OpOr,
+      --              '0'		WHEN (WriteBack AND (OPCODE(0) = '1')),
+      --              '1'		WHEN (WriteBack AND (OPCODE(0) = '0'));
+		CASE state IS
+			WHEN Fetch =>
+				RegDst <= '0';
+			WHEN Decode =>
+				RegDst <= '0';
+			WHEN OpAdd =>
+				RegDst <= '0';
+			WHEN OpSub =>
+				RegDst <= '0';
+			WHEN OpAnd =>
+				RegDst <= '0';
+			WHEN OpOr =>
+				RegDst <= '0';
+			WHEN WriteBack =>
+				CASE OPCODE(0) IS
+					WHEN '1' =>
+						RegDst <= '0';
+					WHEN '0' =>
+						RegDst <= '1';	
+					WHEN OTHERS => NULL;
+				END CASE;
+			WHEN OTHERS => NULL;
+		END CASE;
+		
+		
     WITH state SELECT
 	MovtoReg         <= "00" 	    WHEN Fetch,
                         "00"		WHEN Decode,
@@ -130,19 +156,19 @@ END CPU;
 					    "00"		WHEN OpSub,
 					    "00" 	    WHEN OpAnd,
 					    "00"		WHEN OpOr,
-                        "00"		WHEN WriteBack AND NOT (OPCODE = "0000" OR OPCODE = "0001");
-                        "10"		WHEN WriteBack AND (OPCODE = "0000");
-                        "01"		WHEN WriteBack AND (OPCODE = "0001");
+                        "00"		WHEN (WriteBack AND NOT (OPCODE = "0000" OR OPCODE = "0001")),
+                        "10"		WHEN (WriteBack AND (OPCODE = "0000")),
+                        "01"		WHEN (WriteBack AND (OPCODE = "0001"));
     WITH state SELECT
 	ALUOp            <= "10" 	    WHEN Fetch,
                         "00"		WHEN Decode,
-                        "10"		WHEN OpAdd AND (OPCODE = "0010" OR OPCODE = "0011"),
-                        "00"		WHEN OpAdd AND NOT (OPCODE = "0010" OR OPCODE = "0011"),
-                        "11"		WHEN OpSub AND (OPCODE = "0100" OR OPCODE = "0101"),
-                        "00"		WHEN OpSub AND NOT (OPCODE = "0100" OR OPCODE = "0101"),
+                        "10"		WHEN (OpAdd AND (OPCODE = "0010" OR OPCODE = "0011")),
+                        "00"		WHEN (OpAdd AND NOT (OPCODE = "0010" OR OPCODE = "0011")),
+                        "11"		WHEN (OpSub AND (OPCODE = "0100" OR OPCODE = "0101")),
+                        "00"		WHEN (OpSub AND NOT (OPCODE = "0100" OR OPCODE = "0101")),
 					    "00" 	    WHEN OpAnd,
-                        "01"		WHEN OpOr AND (OPCODE = "1000" OR OPCODE = "1001"),
-                        "01"		WHEN OpOr AND NOT (OPCODE = "1000" OR OPCODE = "1001"),
+                        "01"		WHEN (OpOr AND (OPCODE = "1000" OR OPCODE = "1001")),
+                        "01"		WHEN (OpOr AND NOT (OPCODE = "1000" OR OPCODE = "1001")),
                         "00"		WHEN WriteBack;
     WITH state SELECT
 	ALUScrA         <='0' 	WHEN Fetch,
@@ -155,14 +181,14 @@ END CPU;
     WITH state SELECT
 	ALUScrB            <= "01" 	    WHEN Fetch,
                         "00"		WHEN Decode,
-                        "10"		WHEN OpAdd AND (OPCODE = "0011"),
-                        "00"		WHEN OpAdd AND NOT (OPCODE = "0011"),
-                        "10"		WHEN OpSub AND (OPCODE = "0101"),
-                        "00"		WHEN OpSub AND NOT (OPCODE = "0101"),
-					    "10"		WHEN OpAnd AND (OPCODE = "0111"),
-                        "00"		WHEN OpAnd AND NOT (OPCODE = "0111"),
-                        "10"		WHEN OpOr AND (OPCODE = "1001"),
-                        "00"		WHEN OpOr AND NOT (OPCODE = "1001"),
+                        "10"		WHEN (OpAdd AND (OPCODE = "0011")),
+                        "00"		WHEN (OpAdd AND NOT (OPCODE = "0011")),
+                        "10"		WHEN (OpSub AND (OPCODE = "0101")),
+                        "00"		WHEN (OpSub AND NOT (OPCODE = "0101")),
+					    "10"		WHEN (OpAnd AND (OPCODE = "0111")),
+                        "00"		WHEN (OpAnd AND NOT (OPCODE = "0111")),
+                        "10"		WHEN (OpOr AND (OPCODE = "1001")),
+                        "00"		WHEN (OpOr AND NOT (OPCODE = "1001")),
                         "00"		WHEN WriteBack;
     WITH state SELECT
 	RegWrite         <='0' 	WHEN Fetch,
@@ -173,7 +199,7 @@ END CPU;
 					'0'		WHEN OpOr,
                     '1'		WHEN WriteBack;
 
-    IF IRWrite
-
+    --IF IRWrite
+    -- execução do circuito
     
 	END options;
