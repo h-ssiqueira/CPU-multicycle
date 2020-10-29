@@ -200,6 +200,6 @@ END CPU;
                     '1'		WHEN WriteBack;
 
     --IF IRWrite
-    -- execução do circuito
+
     
 	END options;
