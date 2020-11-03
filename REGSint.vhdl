@@ -3,7 +3,7 @@ USE ieee.std_logic_1164.all;
 
 ENTITY REGSint IS
     PORT(
-        RegWrite1,clock1						:IN	STD_LOGIC;							-- sinal do controlador de escrita
+        RegWrite1,clock1,RESET1						:IN	STD_LOGIC;							-- sinal do controlador de escrita
         MovtoReg1						:IN STD_LOGIC_VECTOR(1 DOWNTO 0);		-- Sinal do multiplexador de escrita
         Rs1, Rt1, Rd1					:IN	STD_LOGIC_VECTOR(2 DOWNTO 0); 		-- Controle dos registradores a serem usados
         ExtImmediate1,ALUout1					:IN	STD_LOGIC_VECTOR(7 DOWNTO 0); 		-- Informações a serem escritas em um registrador
@@ -14,9 +14,19 @@ END REGSint;
 ARCHITECTURE options OF REGSint IS
 	SIGNAL AUXa : STD_LOGIC_VECTOR(7 DOWNTO 0);
 	BEGIN
-	PROCESS (clock1,RegWrite1, Rs1,Rd1,Rt1, ExtImmediate1,ALUout1,MovtoReg1, R0, R1, R2, R3, R4, R5, R6, R7,AUXa)
+	PROCESS (clock1,RegWrite1, Rs1,Rd1,Rt1, ExtImmediate1,ALUout1,MovtoReg1, R0, R1, R2, R3, R4, R5, R6, R7,AUXa,RESET1)
 	BEGIN	
 		IF clock1'EVENT AND clock1 = '1' THEN
+			IF RESET1 = '0' THEN
+					R0 <= "00000000";
+					R1 <= "00000000";
+					R2 <= "00000000";
+					R3 <= "00000000";
+					R4 <= "00000000";
+					R5 <= "00000000";
+					R6 <= "00000000";
+					R7 <= "00000000";
+			ELSE
         CASE RegWrite1 IS
 		
 			WHEN '0' => -- Sem escrita
@@ -185,6 +195,7 @@ ARCHITECTURE options OF REGSint IS
 			WHEN OTHERS => NULL;
 			
         END CASE;
+		  END IF;
 		 END IF;
     END PROCESS;
 END options;
