@@ -11,48 +11,165 @@ END ULA;
 
 	ARCHITECTURE options OF ULA IS
 	--SIGNAL Result : STD_LOGIC_VECTOR(8 DOWNTO 0);
-	SIGNAL RB, RA : STD_LOGIC_VECTOR(7 DOWNTO 0);
+	--SIGNAL RB, RA : STD_LOGIC_VECTOR(7 DOWNTO 0);
 	BEGIN
 	PROCESS (ALUop, A, B, ALUSrcA,ALUSrcB,clock, PC,Imed)
 	BEGIN
-		IF clock'EVENT AND clock = '1' THEN
-			CASE ALUSrcB  IS
-				WHEN "00" => --carrega direto o valor de B
-					RB <= B;
-				WHEN "01" => --caregga o valo '4'
-					RB <= "00000100";
-				WHEN "10" => -- carrega o imediato
-					RB <= Imed;
-				WHEN OTHERS => NULL;
-			END CASE;
+		--IF clock'EVENT AND clock = '1' THEN
+			--CASE ALUSrcB  IS
+				--WHEN "00" => --carrega direto o valor de B
+					--RB <= B;
+				--WHEN "01" => --caregga o valo '4'
+					--RB <= "00000100";
+				--WHEN "10" => -- carrega o imediato
+					--RB <= Imed;
+				--WHEN OTHERS => NULL;
+			--END CASE;
 
-			CASE ALUSrcA IS
-				WHEN '0' => --pega o valor de PC
-					RA <= PC;
-				WHEN '1' => --pega o valor de A
-					RA <= A;
-				WHEN OTHERS => NULL;
-				END CASE;
-		ELSIF clock'EVENT AND clock = '0' THEN
+			--CASE ALUSrcA IS
+				--WHEN '0' => --pega o valor de PC
+					--RA <= PC;
+				--WHEN '1' => --pega o valor de A
+					--RA <= A;
+				--WHEN OTHERS => NULL;
+				--END CASE;
+		IF clock'EVENT AND clock = '0' THEN
 			CASE ALUop IS
 				WHEN "00" => -- AND
 
-					ALUout <= RA AND RB;
+					CASE ALUSrcB  IS
+						WHEN "00" => --carrega direto o valor de B
+							CASE ALUSrcA IS
+								WHEN '0' => --pega o valor de PC
+									ALUout <= PC AND B;
+								WHEN '1' => --pega o valor de A
+									ALUout <= A AND B;
+								WHEN OTHERS => NULL;
+							END CASE;
+						WHEN "01" => --caregga o valo '4'
+						CASE ALUSrcA IS
+								WHEN '0' => --pega o valor de PC
+									ALUout <= PC AND "00000100";
+								WHEN '1' => --pega o valor de A
+									ALUout <= A AND "00000100";
+								WHEN OTHERS => NULL;
+							END CASE;
+						WHEN "10" => -- carrega o imediato
+							CASE ALUSrcA IS
+								WHEN '0' => --pega o valor de PC
+									ALUout <= PC AND Imed;
+								WHEN '1' => --pega o valor de A
+									ALUout <= A AND Imed;
+								WHEN OTHERS => NULL;
+							END CASE;
+						WHEN OTHERS => NULL;
+					END CASE;
+				
+					--ALUout <= RA AND RB;
 
 				WHEN "01" => -- OR
-					ALUout <= RA OR RB; 
+				
+					CASE ALUSrcB  IS
+						WHEN "00" => --carrega direto o valor de B
+							CASE ALUSrcA IS
+								WHEN '0' => --pega o valor de PC
+									ALUout <= PC OR B;
+								WHEN '1' => --pega o valor de A
+									ALUout <= A OR B;
+								WHEN OTHERS => NULL;
+							END CASE;
+						WHEN "01" => --caregga o valo '4'
+						CASE ALUSrcA IS
+								WHEN '0' => --pega o valor de PC
+									ALUout <= PC OR "00000100";
+								WHEN '1' => --pega o valor de A
+									ALUout <= A OR "00000100";
+								WHEN OTHERS => NULL;
+							END CASE;
+						WHEN "10" => -- carrega o imediato
+							CASE ALUSrcA IS
+								WHEN '0' => --pega o valor de PC
+									ALUout <= PC OR Imed;
+								WHEN '1' => --pega o valor de A
+									ALUout <= A OR Imed;
+								WHEN OTHERS => NULL;
+							END CASE;
+						WHEN OTHERS => NULL;
+					END CASE;
+				
+					--ALUout <= RA OR RB; 
 					
 				WHEN "10" => -- ADD
+					
+					CASE ALUSrcB  IS
+						WHEN "00" => --carrega direto o valor de B
+							CASE ALUSrcA IS
+								WHEN '0' => --pega o valor de PC
+									ALUout <= PC + B;
+								WHEN '1' => --pega o valor de A
+									ALUout <= A + B;
+								WHEN OTHERS => NULL;
+							END CASE;
+						WHEN "01" => --caregga o valo '4'
+						CASE ALUSrcA IS
+								WHEN '0' => --pega o valor de PC
+									ALUout <= PC + "00000100";
+								WHEN '1' => --pega o valor de A
+									ALUout <= A + "00000100";
+								WHEN OTHERS => NULL;
+							END CASE;
+						WHEN "10" => -- carrega o imediato
+							CASE ALUSrcA IS
+								WHEN '0' => --pega o valor de PC
+									ALUout <= PC + Imed;
+								WHEN '1' => --pega o valor de A
+									ALUout <= A + Imed;
+								WHEN OTHERS => NULL;
+							END CASE;
+						WHEN OTHERS => NULL;
+					END CASE;
+					
+					
+					
+					
+					
 					--Result <= ('0'& RA) + RB ;	 	--- Realiza a soma e guarda em uma variável auxiliar de 1 bit adicional
 					
 					--ALUout <= Result(7 DOWNTO 0);	-- Guarda a soma no output
-					ALUout <= RA + RB;
+					
+					--ALUout <= RA + RB;
 					
 				WHEN "11" => -- SUB
-					--Result <= ('0'& RA) - RB;		--Realiza a subtracao e guarda em uma variavel auxiliar de 1 bit adicional
 					
-					--ALUout <= Result(7 DOWNTO 0);	-- Guarda a soma no output
-					ALUout <= RA - RB;
+					CASE ALUSrcB  IS
+						WHEN "00" => --carrega direto o valor de B
+							CASE ALUSrcA IS
+								WHEN '0' => --pega o valor de PC
+									ALUout <= PC - B;
+								WHEN '1' => --pega o valor de A
+									ALUout <= A - B;
+								WHEN OTHERS => NULL;
+							END CASE;
+						WHEN "01" => --caregga o valo '4'
+						CASE ALUSrcA IS
+								WHEN '0' => --pega o valor de PC
+									ALUout <= PC - "00000100";
+								WHEN '1' => --pega o valor de A
+									ALUout <= A - "00000100";
+								WHEN OTHERS => NULL;
+							END CASE;
+						WHEN "10" => -- carrega o imediato
+							CASE ALUSrcA IS
+								WHEN '0' => --pega o valor de PC
+									ALUout <= PC - Imed;
+								WHEN '1' => --pega o valor de A
+									ALUout <= A - Imed;
+								WHEN OTHERS => NULL;
+							END CASE;
+						WHEN OTHERS => NULL;
+					END CASE;
+					
+					--ALUout <= RA - RB;
 					
 				WHEN OTHERS => NULL;
 			END CASE; 
