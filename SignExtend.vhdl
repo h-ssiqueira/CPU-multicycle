@@ -9,5 +9,5 @@ END SignExtend;
 ARCHITECTURE options OF SignExtend IS
 BEGIN
     ExtImmediate(5 DOWNTO 0) <= Immediate;
-    ExtImmediate(7 DOWNTO 6) <= "00";
+    ExtImmediate(7 DOWNTO 6) <= "00"; -- retorna o imediato estendido
 END options;
