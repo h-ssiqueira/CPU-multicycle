@@ -1,0 +1,280 @@
+# Reading D:/intelFPGA_lite/18.1/modelsim_ase/tcl/vsim/pref.tcl
+# do projeto2CPU_run_msim_rtl_vhdl.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
+# vmap work rtl_work 
+# Copying D:/intelFPGA_lite/18.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vcom -93 -work work {D:/Arquitetura/Quartus/Projeto2/IR.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 07:33:05 on Nov 26,2020
+# vcom -reportprogress 300 -93 -work work D:/Arquitetura/Quartus/Projeto2/IR.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity IR
+# -- Compiling architecture options of IR
+# End time: 07:33:05 on Nov 26,2020, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {D:/Arquitetura/Quartus/Projeto2/REGSint.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 07:33:05 on Nov 26,2020
+# vcom -reportprogress 300 -93 -work work D:/Arquitetura/Quartus/Projeto2/REGSint.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity REGSint
+# -- Compiling architecture options of REGSint
+# End time: 07:33:06 on Nov 26,2020, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {D:/Arquitetura/Quartus/Projeto2/SignExtend.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 07:33:06 on Nov 26,2020
+# vcom -reportprogress 300 -93 -work work D:/Arquitetura/Quartus/Projeto2/SignExtend.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity SignExtend
+# -- Compiling architecture options of SignExtend
+# End time: 07:33:06 on Nov 26,2020, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {D:/Arquitetura/Quartus/Projeto2/ULA.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 07:33:06 on Nov 26,2020
+# vcom -reportprogress 300 -93 -work work D:/Arquitetura/Quartus/Projeto2/ULA.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_SIGNED
+# -- Compiling entity ULA
+# -- Compiling architecture options of ULA
+# End time: 07:33:06 on Nov 26,2020, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {D:/Arquitetura/Quartus/Projeto2/StateMachine.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 07:33:06 on Nov 26,2020
+# vcom -reportprogress 300 -93 -work work D:/Arquitetura/Quartus/Projeto2/StateMachine.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity StateMachine
+# -- Compiling architecture options of StateMachine
+# End time: 07:33:06 on Nov 26,2020, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {D:/Arquitetura/Quartus/Projeto2/CPU.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 07:33:06 on Nov 26,2020
+# vcom -reportprogress 300 -93 -work work D:/Arquitetura/Quartus/Projeto2/CPU.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity CPU
+# -- Compiling architecture behavior of CPU
+# ** Warning: D:/Arquitetura/Quartus/Projeto2/CPU.vhd(157): Cannot associate port "RA1" of mode OUT with port "A" of mode BUFFER.
+# ** Warning: D:/Arquitetura/Quartus/Projeto2/CPU.vhd(157): Cannot associate port "RB1" of mode OUT with port "B" of mode BUFFER.
+# ** Warning: D:/Arquitetura/Quartus/Projeto2/CPU.vhd(161): Cannot associate port "ALUout" of mode OUT with port "ALURESULT" of mode BUFFER.
+# End time: 07:33:06 on Nov 26,2020, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 3
+# vcom -93 -work work {D:/Arquitetura/Quartus/Projeto2/memoria64x4int.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 07:33:07 on Nov 26,2020
+# vcom -reportprogress 300 -93 -work work D:/Arquitetura/Quartus/Projeto2/memoria64x4int.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity memoria64x4int
+# -- Compiling architecture MEMORY of memoria64x4int
+# End time: 07:33:07 on Nov 26,2020, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+vsim work.cpu
+# vsim work.cpu 
+# Start time: 07:33:17 on Nov 26,2020
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.cpu(behavior)
+# Loading work.statemachine(options)
+# Loading work.memoria64x4int(memory)
+# Loading work.ir(options)
+# Loading work.signextend(options)
+# Loading work.regsint(options)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_signed(body)
+# Loading work.ula(options)
+wave create -driver freeze -pattern clock -initialvalue 1 -period 100ns -dutycycle 50 -starttime 0ns -endtime 5800ns sim:/cpu/clock0
+# Editable Wave items are not compatible with the wave window's standard undo-redo.  Standard undo-redo has been disabled.
+wave create -driver freeze -pattern constant -value 1 -starttime 0ns -endtime 5800ns sim:/cpu/reset
+wave edit change_value -start 0ns -end 100ns -value 0 Edit:/cpu/reset
+add wave -position insertpoint  \
+sim:/cpu/R_0
+add wave -position insertpoint  \
+sim:/cpu/R_1
+add wave -position insertpoint  \
+sim:/cpu/R_2
+add wave -position insertpoint  \
+sim:/cpu/R_3
+add wave -position insertpoint  \
+sim:/cpu/R_4
+add wave -position insertpoint  \
+sim:/cpu/R_5
+add wave -position insertpoint  \
+sim:/cpu/R_6
+add wave -position insertpoint  \
+sim:/cpu/R_7
+add wave -position insertpoint  \
+sim:/cpu/PC
+add wave -position insertpoint  \
+sim:/cpu/ALURESULT
+add wave -position insertpoint  \
+sim:/cpu/A
+add wave -position insertpoint  \
+sim:/cpu/B
+add wave -position insertpoint  \
+sim:/cpu/MEMORY
+add wave -position insertpoint  \
+sim:/cpu/IMED8
+add wave -position insertpoint  \
+sim:/cpu/IMED6
+add wave -position insertpoint  \
+sim:/cpu/OPcode
+add wave -position insertpoint  \
+sim:/cpu/RT
+add wave -position insertpoint  \
+sim:/cpu/RS
+add wave -position insertpoint  \
+sim:/cpu/MOVTOREG
+add wave -position insertpoint  \
+sim:/cpu/ALUSRCB
+add wave -position insertpoint  \
+sim:/cpu/ALUOP
+add wave -position insertpoint  \
+sim:/cpu/PCWRITE
+add wave -position insertpoint  \
+sim:/cpu/IRWRITE
+add wave -position insertpoint  \
+sim:/cpu/REGDST
+add wave -position insertpoint  \
+sim:/cpu/REGWRITE
+add wave -position insertpoint  \
+sim:/cpu/ALUSRCA
+add wave -position insertpoint  \
+sim:/cpu/ALUSRCA
+add wave -position insertpoint  \
+sim:/cpu/ALUSRCA
+run -all
+# ** Fatal: (vsim-3421) Value 64 is out of range 0 to 63.
+#    Time: 5750 ns  Iteration: 0  Process: /cpu/MMR/line__23 File: D:/Arquitetura/Quartus/Projeto2/memoria64x4int.vhd
+# Fatal error in Process line__23 at D:/Arquitetura/Quartus/Projeto2/memoria64x4int.vhd line 41
+# 
+# HDL call sequence:
+# Stopped at D:/Arquitetura/Quartus/Projeto2/memoria64x4int.vhd 41 Process line__23
+# 
+# WARNING: No extended dataflow license exists
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# **** Error: SelectedSignalQ cmd: Wave::SelectSigCmd .main_pane.dataflow.interior.cs.body.pw.wf.top.tree sim
+# ****        can't read "vsimPriv(.main_pane.dataflow.interior.cs.body:grid)": no such element in array
+# can't read "vsimPriv(.main_pane.dataflow.interior.cs.body:grid)": no such element in array
+#     while executing
+# "set grid $vsimPriv($grid:grid)"
+#     (procedure "ginfo" line 10)
+#     invoked from within
+# "ginfo trees $w"
+#     (procedure "Wave::SelectSigCmd" line 8)
+#     invoked from within
+# "Wave::SelectSigCmd .main_pane.dataflow.interior.cs.body.pw.wf.top.tree sim"
+#     ("eval" body line 1)
+#     invoked from within
+# "eval $p $tankNamespace "
+# **** Error: SelectedSignalQ cmd: Wave::SelectSigCmd .main_pane.dataflow.interior.cs.body.pw.wf.top.tree sim
+# ****        can't read "vsimPriv(.main_pane.dataflow.interior.cs.body:grid)": no such element in array
+# can't read "vsimPriv(.main_pane.dataflow.interior.cs.body:grid)": no such element in array
+#     while executing
+# "set grid $vsimPriv($grid:grid)"
+#     (procedure "ginfo" line 10)
+#     invoked from within
+# "ginfo trees $w"
+#     (procedure "Wave::SelectSigCmd" line 8)
+#     invoked from within
+# "Wave::SelectSigCmd .main_pane.dataflow.interior.cs.body.pw.wf.top.tree sim"
+#     ("eval" body line 1)
+#     invoked from within
+# "eval $p $tankNamespace "
+# **** Error: SelectedSignalQ cmd: Wave::SelectSigCmd .main_pane.dataflow.interior.cs.body.pw.wf.top.tree sim
+# ****        can't read "vsimPriv(.main_pane.dataflow.interior.cs.body:grid)": no such element in array
+# can't read "vsimPriv(.main_pane.dataflow.interior.cs.body:grid)": no such element in array
+#     while executing
+# "set grid $vsimPriv($grid:grid)"
+#     (procedure "ginfo" line 10)
+#     invoked from within
+# "ginfo trees $w"
+#     (procedure "Wave::SelectSigCmd" line 8)
+#     invoked from within
+# "Wave::SelectSigCmd .main_pane.dataflow.interior.cs.body.pw.wf.top.tree sim"
+#     ("eval" body line 1)
+#     invoked from within
+# "eval $p $tankNamespace "
+# **** Error: SelectedSignalQ cmd: Wave::SelectSigCmd .main_pane.dataflow.interior.cs.body.pw.wf.top.tree sim
+# ****        can't read "vsimPriv(.main_pane.dataflow.interior.cs.body:grid)": no such element in array
+# can't read "vsimPriv(.main_pane.dataflow.interior.cs.body:grid)": no such element in array
+#     while executing
+# "set grid $vsimPriv($grid:grid)"
+#     (procedure "ginfo" line 10)
+#     invoked from within
+# "ginfo trees $w"
+#     (procedure "Wave::SelectSigCmd" line 8)
+#     invoked from within
+# "Wave::SelectSigCmd .main_pane.dataflow.interior.cs.body.pw.wf.top.tree sim"
+#     ("eval" body line 1)
+#     invoked from within
+# "eval $p $tankNamespace "
+# **** Error: SelectedSignalQ cmd: Wave::SelectSigCmd .main_pane.dataflow.interior.cs.body.pw.wf.top.tree sim
+# ****        can't read "vsimPriv(.main_pane.dataflow.interior.cs.body:grid)": no such element in array
+# can't read "vsimPriv(.main_pane.dataflow.interior.cs.body:grid)": no such element in array
+#     while executing
+# "set grid $vsimPriv($grid:grid)"
+#     (procedure "ginfo" line 10)
+#     invoked from within
+# "ginfo trees $w"
+#     (procedure "Wave::SelectSigCmd" line 8)
+#     invoked from within
+# "Wave::SelectSigCmd .main_pane.dataflow.interior.cs.body.pw.wf.top.tree sim"
+#     ("eval" body line 1)
+#     invoked from within
+# "eval $p $tankNamespace "
+# **** Error: SelectedSignalQ cmd: Wave::SelectSigCmd .main_pane.dataflow.interior.cs.body.pw.wf.top.tree sim
+# ****        can't read "vsimPriv(.main_pane.dataflow.interior.cs.body:grid)": no such element in array
+# can't read "vsimPriv(.main_pane.dataflow.interior.cs.body:grid)": no such element in array
+#     while executing
+# "set grid $vsimPriv($grid:grid)"
+#     (procedure "ginfo" line 10)
+#     invoked from within
+# "ginfo trees $w"
+#     (procedure "Wave::SelectSigCmd" line 8)
+#     invoked from within
+# "Wave::SelectSigCmd .main_pane.dataflow.interior.cs.body.pw.wf.top.tree sim"
+#     ("eval" body line 1)
+#     invoked from within
+# "eval $p $tankNamespace "
+# **** Error: SelectedSignalQ cmd: Wave::SelectSigCmd .main_pane.dataflow.interior.cs.body.pw.wf.top.tree sim
+# ****        can't read "vsimPriv(.main_pane.dataflow.interior.cs.body:grid)": no such element in array
+# can't read "vsimPriv(.main_pane.dataflow.interior.cs.body:grid)": no such element in array
+#     while executing
+# "set grid $vsimPriv($grid:grid)"
+#     (procedure "ginfo" line 10)
+#     invoked from within
+# "ginfo trees $w"
+#     (procedure "Wave::SelectSigCmd" line 8)
+#     invoked from within
+# "Wave::SelectSigCmd .main_pane.dataflow.interior.cs.body.pw.wf.top.tree sim"
+#     ("eval" body line 1)
+#     invoked from within
+# "eval $p $tankNamespace "
+# End time: 08:49:26 on Nov 26,2020, Elapsed time: 1:16:09
+# Errors: 10, Warnings: 1
